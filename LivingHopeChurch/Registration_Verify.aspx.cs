@@ -58,8 +58,9 @@ namespace LivingHopeChurch
                 }
                 else
                 {
-                    Label2.Text = "Registered successfully";
-                    Response.AppendHeader("Refresh", "3;url=Login.aspx");
+                    Label2.Text = "Registered successfully as a Guest.\nYou still have to verified by the admins.";
+                    Label3.Text = "You will be automatically redirected in 5 seconds.";
+                    Response.AppendHeader("Refresh", "5;url=Login.aspx");
                     HiddenField1.Value = "T";
                 }
             }

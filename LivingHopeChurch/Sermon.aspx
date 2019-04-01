@@ -20,7 +20,6 @@
             height: 50px;
             animation: spin 3s linear infinite;
         }
-
         .loader2 {
             border: 3px solid #282B2D;
             border-radius: 50%;
@@ -30,7 +29,6 @@
             animation: spin 2s linear infinite;
             margin: 5px;
         }
-
         .loader3 {
             border: 2px solid #282B2D;
             border-radius: 50%;
@@ -40,21 +38,14 @@
             animation: spin 2s linear infinite;
             margin: 6px;
         }
-
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
         }
-
-        body {
-            background-color: #282B2D;
-        }
-
         .sidenav {
             height: auto;
             width: 0;
@@ -85,8 +76,19 @@
             font-size: large;
             font-family: Comfortaa;
             color: white;
-            display: block;
-            transition: 0.1s;
+        }
+
+        .Title {
+            font-size: xx-large;
+            font-family: Comfortaa;
+            color: white;
+        }
+
+        .Text {
+            font-size: large;
+            font-family: Comfortaa;
+            color: white;
+            padding-top: 14px;
         }
 
         a:hover {
@@ -95,6 +97,7 @@
 
         .Player {
             padding-top: 10px;
+            position: relative;
         }
 
         @media screen and (max-width: 420px) {
@@ -105,32 +108,30 @@
                 .sidenav a {
                     font-size: 18px;
                 }
-                #loader{
-                    left:43%;
-                    top:40%;
-                }
+        }
+
+        body {
+            background-color: #282B2D;
         }
     </style>
     <script>
         function Click() {
-            if (window.innerWidth <= 420) {
-                if (document.getElementById("SideBar").style.width == "120px") {
-                    document.getElementById("SideBar").style.width = "0";
-                    document.getElementById("cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad").style.paddingTop = "0px";
+            if (window.innerWidth <= 360) {
+                if (document.getElementById("SideBar").style.width == "110px") {
+                    document.getElementById("SideBar").style.width = "0px";
+                    document.getElementById("Title").style.paddingLeft = "0px";
                 }
                 else {
-                    document.getElementById("SideBar").style.width = "120px";
-                    document.getElementById("cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad").style.paddingTop = "200px";
+                    document.getElementById("SideBar").style.width = "110px";
+                    document.getElementById("Title").style.paddingLeft = "100px";  
                 }
             }
             else {
                 if (document.getElementById("SideBar").style.width == "120px") {
-                    document.getElementById("SideBar").style.width = "0";
-                    document.getElementById("cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad").style.paddingLeft = "0px";
+                    document.getElementById("SideBar").style.width = "0px";
                 }
                 else {
                     document.getElementById("SideBar").style.width = "120px";
-                    document.getElementById("cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad").style.paddingLeft = "150px";
                 }
             }
         }
@@ -139,7 +140,6 @@
 <body onload="myFunction()">
     <form id="form1" runat="server">
         <div style="width: 100%; height: 100%">
-
             <div id="SideBar" class="sidenav">
                 <a href="Ministry.aspx">Ministry</a>
                 <a href="#">Sermons</a>
@@ -156,24 +156,31 @@
                 </div>
                 <div class="p-2"></div>
             </div>
-        </div>
-        <div id="Player">
-            <div id="cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad" style="display: none;"></div>
+            <div class="d-flex p-4 justify-content-center">
+                <div id="Title">
+                    <p class="Title">Sermons</p>
+                </div>
+            </div>
             <div id="loader">
                 <div class="loader2">
                     <div class="loader3">
                     </div>
                 </div>
             </div>
-            <script type="text/javascript">
-                var cpo = []; cpo["_object"] = "cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad"; cpo["_fid"] = "A8KA-dOFPcub";
-                var _cpmp = _cpmp || []; _cpmp.push(cpo);
-                (function () {
-                    var cp = document.createElement("script"); cp.type = "text/javascript";
-                    cp.async = true; cp.src = "//www.cincopa.com/media-platform/runtime/libasync.js";
-                    var c = document.getElementsByTagName("script")[0];
-                    c.parentNode.insertBefore(cp, c);
-                })(); </script>
+            <div id="Playlist" style ="display:none">
+                <div class ="d-flex justify-content-center">
+                    <p class="Text">JVNA - Running</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/JVNA---Running-e3k16u/a-acj4hg" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
+                </div>
+                <div class ="d-flex justify-content-center">
+                    <p class="Text">Andrew Huang - Stay</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/Andrew-Huang---Stay-e3k16o/a-acj4he" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
         </div>
     </form>
     <script>
@@ -183,7 +190,7 @@
         }
         function showPage() {
             document.getElementById("loader").style.display = "none";
-            document.getElementById("cp_widget_24fea73c-3c3d-4a14-b57e-3e41301629ad").style.display = "block";
+            document.getElementById("Playlist").style.display = "block";
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

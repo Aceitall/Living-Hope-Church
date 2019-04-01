@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Offering.aspx.cs" Inherits="LivingHopeChurch.Offering"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home_Admin.aspx.cs" Inherits="LivingHopeChurch.Home_Admin" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,7 @@
 <head runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel ="icon" href="favicon.ico" type="image/x-icon"/>
-    <title>Offering</title><style>
+    <title>Home</title><style>
         .sidenav {
             height: auto;
             width: 0;
@@ -89,7 +89,7 @@
                 <a href="Ministry.aspx">Ministry</a>
                 <a href="Sermon.aspx">Sermons</a>
                 <a href="Directory.aspx">Directory</a>
-                <a href="#">Offering</a>
+                <a href="Offering.aspx">Offering</a>
                 <a href="Profile.aspx">Profile</a>
             </div>
             <div class="d-flex flex-row justify-content-start">
@@ -97,7 +97,7 @@
                     <span style="color: white; font-size: 30px; cursor: pointer" onclick="Click()">&#9776;</span>
                 </div>
                 <div class="p" style="padding: 11px 0px 0px 10px">
-                    <a href="Home.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
+                    <a href="#" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
                 <div class="p-2"></div>
             </div>

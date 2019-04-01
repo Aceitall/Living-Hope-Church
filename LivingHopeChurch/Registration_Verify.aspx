@@ -4,13 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Registration</title>
-    <style type="text/css">
-        .auto-style1 {
-            font-family: Comfortaa;
-            font-size: medium;
-            color:white;
-        }
-    </style>
 </head>
 <body style="background-color: #282B2D">
     <form id="form1" runat="server">
@@ -45,7 +38,7 @@
             <br />
             <br />
             <br />
-            <span class="auto-style1">You will be automatically redirected in 3 seconds.</span>
+            <asp:Label ID="Label3" runat="server" Font-Names="Comfortaa" ForeColor="White">You will be automatically redirected in 3 seconds.</asp:Label>
             <asp:HiddenField ID="HiddenField1" runat="server" />
         </div>
     </form>
@@ -80,9 +73,10 @@
                     Last_Name: last,
                     Email: email,
                     Number: number,
-                    Usertype: "Member"
+                    Usertype: "Guest"
                 });
             }
         }
     });
+    <% Session.Clear();%>
 </script>

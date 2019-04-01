@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace LivingHopeChurch
 {
-    public partial class Login_Verify : System.Web.UI.Page
+    public partial class Home_Admin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

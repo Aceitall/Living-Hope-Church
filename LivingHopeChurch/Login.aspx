@@ -56,15 +56,16 @@
 </head>
 <body style="background-color: #282B2D">
     <form id="form1" runat="server">
-        <div style="text-align: center">
-            <asp:Image class="Img" ID="Image1" runat="server" Height="100px" Style="text-align: left" ImageUrl="~/favicon.ico" /><br />
+        <div style="text-align: center; padding-top:30px"">
+            <asp:Image class="Img" ID="Image1" runat="server" Height="100px" Style="text-align: left" ImageUrl="~/favicon.ico" />
             <div>
+                <div class="p-1"></div>
                 <h2>Login</h2>
                 <asp:TextBox Width="320px" ID="Label1" runat="server" Style="padding: 2px; text-align: center" BackColor="#282B2D" Font-Names="Comfortaa" Font-Size="Small" ForeColor="White" BorderStyle="None" ReadOnly="True" Rows="2"></asp:TextBox>
                 <div class="Small">
                     <div style="display: flex; justify-content: space-around;" class="input-flex">
                         <p class="auto-style2">Username</p>
-                        <input class="Input_Size" type="text" id="Username" runat="server" style="background-color: #282B2D; border-color: White; border-style: Ridge; font-family: Comfortaa; color: White" />
+                         <input class="Input_Size" type="text" id="Username" runat="server" style="background-color: #282B2D; border-color: White; border-style: Ridge; font-family: Comfortaa; color: White" />
                     </div>
                     <div style="display: flex; justify-content: space-around;" class="input-flex">
                         <p class="auto-style2">Password</p>
@@ -80,11 +81,13 @@
                         <asp:Button ID="Button1" class="btn btn-light" runat="server" Text="Login as Guest" OnClick="Guest_Click" />
                     </div>
                 </div>
+                <div class="p-2"></div>
                 <span class="auto-style2">Don't have an account yet? Click
             <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Registration.aspx" ForeColor="White">here</asp:HyperLink>
                     to register</span><br />
             </div>
         </div>
+        <asp:HiddenField ID="HiddenField1" runat="server" />
     </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -94,7 +97,6 @@
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
 <script>
-
     firebase.initializeApp({
         apiKey: "AIzaSyArcbqxkogFHes_uI7qcuaUKB05z4h1FMg",
         authDomain: "living-hope-church.firebaseapp.com",
@@ -113,9 +115,14 @@
         docRef.get().then(function (doc) {
             if (doc.exists) {
                 const userdata = doc.data();
+                localStorage.Type = userdata.Usertype;
+                localStorage.User = userdata.Username;
                 if (pass === userdata.Password) {
                     if (userdata.Usertype === "Member") {
                         location.replace("http://localhost:50455/Home.aspx");
+                    }
+                    else if (userdata.Usertype === "Guest") {
+                        location.replace("http://localhost:50455/Home_Guest.aspx");
                     }
                     else if (userdata.Usertype === "Admin") {
                         location.replace("http://localhost:50455/Home_Admin.aspx");

@@ -194,6 +194,13 @@
     <Compile Include="Directory.aspx.designer.cs">
       <DependentUpon>Directory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home_Admin.aspx.cs">
+      <DependentUpon>Home_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home_Admin.aspx.designer.cs">
+      <DependentUpon>Home_Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home_Guest.aspx.cs">
       <DependentUpon>Home_Guest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -235,13 +242,6 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login_Verify.aspx.cs">
-      <DependentUpon>Login_Verify.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login_Verify.aspx.designer.cs">
-      <DependentUpon>Login_Verify.aspx</DependentUpon>
     </Compile>
     <Compile Include="Registration_Verify.aspx.cs">
       <DependentUpon>Registration_Verify.aspx</DependentUpon>
@@ -293,37 +293,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Directory.png" />
-    <Content Include="Directory_Dark.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Directory.aspx" />
-    <Content Include="Home_Dark.png" />
+    <Content Include="Home_Admin.aspx" />
     <Content Include="Home_Guest.aspx" />
-    <Content Include="Login.png" />
-    <Content Include="Login_Guest.png" />
-    <Content Include="Ministry_Dark.png" />
     <Content Include="Ministry_Guest.aspx" />
-    <Content Include="Offering_Dark.png" />
     <Content Include="Offering_Guest.aspx" />
     <Content Include="Offering.aspx" />
-    <Content Include="Profile_Dark.png" />
-    <Content Include="Register.png" />
     <Content Include="Login.aspx" />
     <Content Include="Registration.aspx" />
-    <Content Include="Login_Verify.aspx" />
     <Content Include="Registration_Verify.aspx" />
-    <Content Include="Sermon_Dark.png" />
     <Content Include="Sermon_Guest.aspx" />
     <Content Include="Sermon.aspx" />
     <Content Include="Ministry.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="Home.png" />
-    <Content Include="Ministry.png" />
-    <Content Include="Offering.png" />
     <Content Include="Profile.aspx" />
-    <Content Include="Profile.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -354,7 +340,6 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Sermon.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -49,9 +49,10 @@
 </head>
 <body style="background-color: #282B2D">
     <form id="form1" runat="server">
-        <div style="text-align: center">
+        <div style="text-align: center; padding-top:30px">
             <asp:Image class="Img" ID="Image1" runat="server" Height="100px" ImageUrl="~/favicon.ico" />
             <div>
+                <div class="p-1"></div>
                 <h2>Registration</h2>
                 <asp:TextBox Width="320px" ID="Label1" runat="server" Style="padding:2px; text-align: center" BackColor="#282B2D" Font-Names="Comfortaa" Font-Size="Small" ForeColor="White" BorderStyle="None" ReadOnly="True" Rows="2"></asp:TextBox>
                 <div class="Small">
@@ -83,6 +84,7 @@
                 <div class="d-flex p-2 justify-content-center">
                     <asp:Button ID="Button1" class="btn btn-success" runat="server" Text="Register" OnClick="Registration_Click" />
                 </div>
+                <div class="p-2"></div>
                 <span class="auto-style2">Have an account already? Click
             <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Login.aspx" ForeColor="White">here</asp:HyperLink> to login</span>
             </div>
