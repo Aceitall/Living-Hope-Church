@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script src="Encryption.js"></script>
     <title>Registration</title>
 </head>
 <body style="background-color: #282B2D">
@@ -68,6 +69,7 @@
             if (flag === "T") {
                 db.collection("User").doc(user).set({
                     Username: user,
+                    Encrypt: key(),
                     Password: pass,
                     First_Name: first,
                     Last_Name: last,

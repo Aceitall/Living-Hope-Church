@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sermon_Guest.aspx.cs" Inherits="LivingHopeChurch.Sermon_Guest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sermon_Admin.aspx.cs" Inherits="LivingHopeChurch.Sermon_Admin" %>
 
 <!DOCTYPE html>
 
@@ -137,15 +137,27 @@
     </style>
     <script>
         function Click() {
-            if (document.getElementById("SideBar").style.width == "120px") {
-                document.getElementById("SideBar").style.width = "0";
+            if (window.innerWidth <= 360) {
+                if (document.getElementById("SideBar").style.width == "110px") {
+                    document.getElementById("SideBar").style.width = "0px";
+                    document.getElementById("Title").style.paddingLeft = "0px";
+                }
+                else {
+                    document.getElementById("SideBar").style.width = "110px";
+                    document.getElementById("Title").style.paddingLeft = "100px";
+                }
             }
             else {
-                document.getElementById("SideBar").style.width = "120px";
+                if (document.getElementById("SideBar").style.width == "120px") {
+                    document.getElementById("SideBar").style.width = "0px";
+                }
+                else {
+                    document.getElementById("SideBar").style.width = "120px";
+                }
             }
         }
-        function SignUp() {
-            location.replace("http://localhost:50455/Registration.aspx");
+        function Upload() {
+            document.getElementById("Upload").style.display = "block";
         }
         var myVar;
         function myFunction() {
@@ -155,34 +167,67 @@
             document.getElementById("loader").style.display = "none";
             document.getElementById("Playlist").style.display = "block";
         }
+        function Close() {
+            document.getElementById("Upload").style.display = "none";
+        }
     </script>
 </head>
 <body onload="myFunction()">
     <form id="form1" runat="server">
         <div style="width: 100%; height: 100%">
             <div id="SideBar" class="sidenav">
-                <a href="Ministry_Guest.aspx">Ministry</a>
+                <a href="Ministry_Admin.aspx">Ministry</a>
                 <a href="#">Sermons</a>
-                <a href="Offering_Guest.aspx">Offering</a>
+                <a href="Directory_Admin.aspx">Directory</a>
+                <a href="Offering_Admin.aspx">Offering</a>
+                <a href="Profile_Admin.aspx">Profile</a>
             </div>
             <div class="d-flex flex-row justify-content-start">
                 <div class="p" style="padding-left: 10px">
                     <span style="color: white; font-size: 30px; cursor: pointer" onclick="Click()">&#9776;</span>
                 </div>
                 <div class="p" style="padding: 11px 0px 0px 10px">
-                    <a href="Home_Guest.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
+                    <a href="Home_Admin.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
-                <div class="ml-auto p-2">
-                    <button type="button" onclick="SignUp()" class="btn btn-light">Sign up</button>
-                </div>
-                <div class="p-1"></div>
+                <div class="p-2"></div>
             </div>
             <div class="d-flex p-4 justify-content-center">
                 <div>
                     <div id="Title">
                         <p class="Title">Sermons</p>
                     </div>
+                    <div>
+                        <button type="button" onclick="Upload()" class="btn btn-success">Add new Sermon</button>
+                    </div>
                 </div>
+            </div>
+            <div id="Upload" style="display: none">
+                <div class="d-flex justify-content-end" style="padding-right: 10px">
+                    <span style="color: white; font-size: 20px; cursor: pointer" onclick="Close()">&#x2715;</span>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <div class="d-flex" style="height: 40px">
+                            <p class="Text">Name of Sermon</p>
+                        </div>
+                        <div class="p-2"></div>
+                        <div class="d-flex" style="height: 40px">
+                            <p class="Text">HTML code</p>
+                        </div>
+                    </div>
+                    <div class="p-5"></div>
+                    <div>
+                        <div class="d-flex">
+                            <asp:TextBox class="Input_Size" ID="Name" runat="server" BackColor="#282B2D" BorderColor="White" BorderStyle="Ridge" Font-Names="Comfortaa" ForeColor="White"></asp:TextBox>
+                        </div>
+                        <div class="p-2"></div>
+                        <div class="d-flex">
+                            <asp:TextBox class="Input_Size" ID="Link" runat="server" BackColor="#282B2D" BorderColor="White" BorderStyle="Ridge" Font-Names="Comfortaa" ForeColor="White"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-1"></div>
+                <hr />
             </div>
             <div id="loader">
                 <div class="loader2">
@@ -221,10 +266,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
         var type = localStorage.Type;
-        if (type == "Member")
-            location.replace("http://localhost:50455/Sermon.aspx");
-        else if (type == "Admin")
-            location.replace("http://localhost:50455/Sermon_Admin.aspx");
+        if (false) {
+            if (type == "")
+                location.replace("http://localhost:50455/Registration.aspx");
+            else if (type == "Member")
+                location.replace("http://localhost:50455/Sermon.aspx");
+            else if (type == "Guest")
+                location.replace("http://localhost:50455/Sermon_Guest.aspx");
+        }
     </script>
 </body>
 </html>

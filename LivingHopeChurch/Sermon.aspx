@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Sermons</title>
-    <style>
+<style>
         #loader {
             position: absolute;
             left: 48%;
@@ -20,6 +20,7 @@
             height: 50px;
             animation: spin 3s linear infinite;
         }
+
         .loader2 {
             border: 3px solid #282B2D;
             border-radius: 50%;
@@ -29,6 +30,7 @@
             animation: spin 2s linear infinite;
             margin: 5px;
         }
+
         .loader3 {
             border: 2px solid #282B2D;
             border-radius: 50%;
@@ -38,14 +40,17 @@
             animation: spin 2s linear infinite;
             margin: 6px;
         }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
         }
+
         .sidenav {
             height: auto;
             width: 0;
@@ -78,17 +83,28 @@
             color: white;
         }
 
+        .auto-style2 {
+            font-family: Comfortaa;
+            font-size: large;
+            color: white;
+            line-height: 25px;
+        }
+
         .Title {
             font-size: xx-large;
             font-family: Comfortaa;
             color: white;
         }
 
+        .Input_Size {
+            height: 40px;
+            width: 300px;
+        }
+
         .Text {
             font-size: large;
             font-family: Comfortaa;
             color: white;
-            padding-top: 14px;
         }
 
         a:hover {
@@ -98,6 +114,7 @@
         .Player {
             padding-top: 10px;
             position: relative;
+            width: auto;
         }
 
         @media screen and (max-width: 420px) {
@@ -108,6 +125,10 @@
                 .sidenav a {
                     font-size: 18px;
                 }
+        }
+
+        hr {
+            border-top: 2px dashed white;
         }
 
         body {
@@ -135,6 +156,19 @@
                 }
             }
         }
+        var myVar;
+        function myFunction() {
+            myVar = setTimeout(showPage, 1000);
+        }
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("Playlist").style.display = "block";
+        }
+        function Logout() {
+            localStorage.User = "";
+            localStorage.Type = "";
+            location.replace("http://localhost:50455/Login.aspx");
+        }
     </script>
 </head>
 <body onload="myFunction()">
@@ -154,11 +188,16 @@
                 <div class="p" style="padding: 11px 0px 0px 10px">
                     <a href="Home.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
-                <div class="p-2"></div>
+                <div class="ml-auto p-2">
+                    <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
+                </div>
+                <div class="p-1"></div>
             </div>
             <div class="d-flex p-4 justify-content-center">
-                <div id="Title">
-                    <p class="Title">Sermons</p>
+                <div>
+                    <div id="Title">
+                        <p class="Title">Sermons</p>
+                    </div>
                 </div>
             </div>
             <div id="loader">
@@ -167,34 +206,45 @@
                     </div>
                 </div>
             </div>
-            <div id="Playlist" style ="display:none">
-                <div class ="d-flex justify-content-center">
-                    <p class="Text">JVNA - Running</p>
-                </div>
+            <div class="p-2"></div>
+            <div id="Playlist" style="display: none">
                 <div class="d-flex justify-content-center">
-                    <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/JVNA---Running-e3k16u/a-acj4hg" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
-                </div>
-                <div class ="d-flex justify-content-center">
-                    <p class="Text">Andrew Huang - Stay</p>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/Andrew-Huang---Stay-e3k16o/a-acj4he" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
+                    <div id="Description">
+                        <div class="d-flex" style="height: 102px">
+                            <p class="Text">Andrew Huang - Stay</p>
+                        </div>
+                        <div class="p-2"></div>
+                        <div class="d-flex" style="height: 102px">
+                            <p class="Text">JVNA - Running</p>
+                        </div>
+                    </div>
+                    <div class="p-5"></div>
+                    <div id="Audio">
+                        <div class="d-flex">
+                            <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/JVNA---Running-e3k16u/a-acj4hg" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                        <div class="p-2"></div>
+                        <div class="d-flex">
+                            <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/Andrew-Huang---Stay-e3k16o/a-acj4he" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <script>
-        var myVar;
-        function myFunction() {
-            myVar = setTimeout(showPage, 3000);
-        }
-        function showPage() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("Playlist").style.display = "block";
-        }
-    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        var type = localStorage.Type;
+        if (type != "Member") {
+            if (type == "")
+                location.replace("http://localhost:50455/Registration.aspx");
+            else if (type == "Admin")
+                location.replace("http://localhost:50455/Sermon_Admin.aspx");
+            else if (type == "Guest")
+                location.replace("http://localhost:50455/Sermon_Guest.aspx");
+        }
+    </script>
 </body>
 </html>

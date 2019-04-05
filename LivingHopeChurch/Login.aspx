@@ -115,14 +115,15 @@
         docRef.get().then(function (doc) {
             if (doc.exists) {
                 const userdata = doc.data();
-                localStorage.Type = userdata.Usertype;
-                localStorage.User = userdata.Username;
                 if (pass === userdata.Password) {
+                    localStorage.Type = userdata.Usertype;
+                    if (userdata.Usertype === "Guest") {
+                        location.replace("http://localhost:50455/Home_Guest.aspx");
+                    }
+                    localStorage.User = userdata.Username;
+                    localStorage.Key = userdata.Encrypt;
                     if (userdata.Usertype === "Member") {
                         location.replace("http://localhost:50455/Home.aspx");
-                    }
-                    else if (userdata.Usertype === "Guest") {
-                        location.replace("http://localhost:50455/Home_Guest.aspx");
                     }
                     else if (userdata.Usertype === "Admin") {
                         location.replace("http://localhost:50455/Home_Admin.aspx");

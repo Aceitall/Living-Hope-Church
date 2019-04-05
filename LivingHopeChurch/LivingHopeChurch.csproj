@@ -215,6 +215,13 @@
     <Compile Include="Ministry_Guest.aspx.designer.cs">
       <DependentUpon>Ministry_Guest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Offering_Admin.aspx.cs">
+      <DependentUpon>Offering_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Offering_Admin.aspx.designer.cs">
+      <DependentUpon>Offering_Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Offering_Guest.aspx.cs">
       <DependentUpon>Offering_Guest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -249,6 +256,13 @@
     </Compile>
     <Compile Include="Registration_Verify.aspx.designer.cs">
       <DependentUpon>Registration_Verify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sermon_Admin.aspx.cs">
+      <DependentUpon>Sermon_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sermon_Admin.aspx.designer.cs">
+      <DependentUpon>Sermon_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sermon_Guest.aspx.cs">
       <DependentUpon>Sermon_Guest.aspx</DependentUpon>
@@ -293,6 +307,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Encryption.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -300,11 +315,13 @@
     <Content Include="Home_Admin.aspx" />
     <Content Include="Home_Guest.aspx" />
     <Content Include="Ministry_Guest.aspx" />
+    <Content Include="Offering_Admin.aspx" />
     <Content Include="Offering_Guest.aspx" />
     <Content Include="Offering.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Registration_Verify.aspx" />
+    <Content Include="Sermon_Admin.aspx" />
     <Content Include="Sermon_Guest.aspx" />
     <Content Include="Sermon.aspx" />
     <Content Include="Ministry.aspx" />

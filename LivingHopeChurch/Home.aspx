@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LivingHopeChurch.Home"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LivingHopeChurch.Home" %>
 
 <!DOCTYPE html>
 
@@ -6,8 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel ="icon" href="favicon.ico" type="image/x-icon"/>
-    <title>Home</title><style>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Home</title>
+    <style>
         .sidenav {
             height: auto;
             width: 0;
@@ -74,6 +75,12 @@
                 document.getElementById("SideBar").style.width = "120px";
             }
         }
+        function Logout() {
+            localStorage.User = "";
+            localStorage.Type = "";
+            localStorage.Key = "";
+            location.replace("http://localhost:50455/Login.aspx");
+        }
     </script>
 </head>
 <body>
@@ -93,7 +100,10 @@
                 <div class="p" style="padding: 11px 0px 0px 10px">
                     <a href="#" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
-                <div class="p-2"></div>
+                <div class="ml-auto p-2">
+                    <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
+                </div>
+                <div class="p-1"></div>
             </div>
         </div>
     </form>
@@ -102,3 +112,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyArcbqxkogFHes_uI7qcuaUKB05z4h1FMg",
+        authDomain: "living-hope-church.firebaseapp.com",
+        projectId: "living-hope-church"
+    });
+    var db = firebase.firestore();
+    var user = localStorage.User;
+    if (user == "") {
+        location.replace("http://localhost:50455/Login.aspx")
+    }
+    var docRef = db.collection("User").doc(user);
+    var type = localStorage.Type;
+    docRef.get().then(function (doc) {
+        if (doc.exists) {
+            const userdata = doc.data();
+            check = userdata.Encrypt;
+            if (type == "Member") {
+                if (check != localStorage.Key) {
+                    localStorage.User = "";
+                    localStorage.Type = "";
+                    localStorage.Key = "";
+                    location.replace("http://localhost:50455/Login.aspx")
+                }
+            }
+            else {
+                if (type == "")
+                    location.replace("http://localhost:50455/Registration.aspx");
+                else if (type == "Admin")
+                    location.replace("http://localhost:50455/Home_Admin.aspx");
+                else if (type == "Guest")
+                    location.replace("http://localhost:50455/Home_Guest.aspx");
+            }
+        }
+    });
+</script>
