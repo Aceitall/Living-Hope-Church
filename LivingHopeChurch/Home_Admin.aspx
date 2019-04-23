@@ -80,17 +80,23 @@
                 document.getElementById("SideBar").style.width = "120px";
             }
         }
+        function Logout() {
+            localStorage.User = "";
+            localStorage.Type = "";
+            localStorage.Key = "";
+            location.replace("http://localhost:50455/Login.aspx");
+        }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
         <div style="width: 100%; height: 100%">
             <div id="SideBar" class="sidenav">
-                <a href="Ministry.aspx">Ministry</a>
-                <a href="Sermon.aspx">Sermons</a>
-                <a href="Directory.aspx">Directory</a>
-                <a href="Offering.aspx">Offering</a>
-                <a href="Profile.aspx">Profile</a>
+                <a href="Ministry_Admin.aspx">Ministry</a>
+                <a href="Sermon_Admin.aspx">Sermons</a>
+                <a href="Directory_Admin.aspx">Directory</a>
+                <a href="Offering_Admin.aspx">Offering</a>
+                <a href="Profile_Admin.aspx">Profile</a>
             </div>
             <div class="d-flex flex-row justify-content-start">
                 <div class="p" style="padding-left: 10px">

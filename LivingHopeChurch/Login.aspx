@@ -74,11 +74,11 @@
                 </div>
                 <div class="d-flex">
                     <div class="ml-auto p-2">
-                        <button type="button" id="Button2" class="btn btn-success" onclick="LoginClick()">Login</button>
+                        <button type="button" id="Button1" class="btn btn-success" onclick="LoginClick()">Login</button>
                     </div>
                     <div class="p-2"></div>
                     <div class="mr-auto p-2">
-                        <asp:Button ID="Button1" class="btn btn-light" runat="server" Text="Login as Guest" OnClick="Guest_Click" />
+                        <asp:Button ID="Button2" class="btn btn-light" runat="server" Text="Login as Guest" OnClick="Guest_Click" />
                     </div>
                 </div>
                 <div class="p-2"></div>
@@ -115,7 +115,7 @@
         docRef.get().then(function (doc) {
             if (doc.exists) {
                 const userdata = doc.data();
-                if (pass === userdata.Password) {
+                if (pass === userdata.Password) {       
                     localStorage.Type = userdata.Usertype;
                     if (userdata.Usertype === "Guest") {
                         location.replace("http://localhost:50455/Home_Guest.aspx");

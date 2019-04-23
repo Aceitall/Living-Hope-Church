@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Sermons</title>
-<style>
+    <style>
         #loader {
             position: absolute;
             left: 48%;
@@ -144,7 +144,7 @@
                 }
                 else {
                     document.getElementById("SideBar").style.width = "110px";
-                    document.getElementById("Title").style.paddingLeft = "100px";  
+                    document.getElementById("Title").style.paddingLeft = "100px";
                 }
             }
             else {
@@ -158,7 +158,7 @@
         }
         var myVar;
         function myFunction() {
-            myVar = setTimeout(showPage, 1000);
+            myVar = setTimeout(showPage, 5000);
         }
         function showPage() {
             document.getElementById("loader").style.display = "none";
@@ -189,6 +189,9 @@
                     <a href="Home.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
                 <div class="ml-auto p-2">
+                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Bell.png" Height="40px" />
+                </div>
+                <div class="p-2">
                     <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
                 </div>
                 <div class="p-1"></div>
@@ -210,41 +213,66 @@
             <div id="Playlist" style="display: none">
                 <div class="d-flex justify-content-center">
                     <div id="Description">
-                        <div class="d-flex" style="height: 102px">
-                            <p class="Text">Andrew Huang - Stay</p>
-                        </div>
-                        <div class="p-2"></div>
-                        <div class="d-flex" style="height: 102px">
-                            <p class="Text">JVNA - Running</p>
-                        </div>
                     </div>
                     <div class="p-5"></div>
                     <div id="Audio">
-                        <div class="d-flex">
-                            <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/JVNA---Running-e3k16u/a-acj4hg" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
-                        </div>
-                        <div class="p-2"></div>
-                        <div class="d-flex">
-                            <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/Andrew-Huang---Stay-e3k16o/a-acj4he" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </form>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-        var type = localStorage.Type;
-        if (type != "Member") {
-            if (type == "")
-                location.replace("http://localhost:50455/Registration.aspx");
-            else if (type == "Admin")
-                location.replace("http://localhost:50455/Sermon_Admin.aspx");
-            else if (type == "Guest")
-                location.replace("http://localhost:50455/Sermon_Guest.aspx");
-        }
-    </script>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyArcbqxkogFHes_uI7qcuaUKB05z4h1FMg",
+        authDomain: "living-hope-church.firebaseapp.com",
+        projectId: "living-hope-church"
+    });
+    var db = firebase.firestore();
+    var user = localStorage.User;
+    if (user == "") {
+        location.replace("http://localhost:50455/Login.aspx")
+    }
+    var docRef = db.collection("User").doc(user);
+    var type = localStorage.Type;
+    docRef.get().then(function (doc) {
+        if (doc.exists) {
+            const userdata = doc.data();
+            check = userdata.Encrypt;
+            if (type == "Member") {
+                if (check != localStorage.Key) {
+                    localStorage.User = "";
+                    localStorage.Type = "";
+                    localStorage.Key = "";
+                    location.replace("http://localhost:50455/Login.aspx")
+                }
+            }
+            else {
+                if (type == "")
+                    location.replace("http://localhost:50455/Registration.aspx");
+                else if (type == "Admin")
+                    location.replace("http://localhost:50455/Sermon_Admin.aspx");
+                else if (type == "Guest")
+                    location.replace("http://localhost:50455/Sermon_Guest.aspx");
+            }
+        }
+    });
+    var node1 = document.getElementById("Description");
+    var node2 = document.getElementById("Audio");
+    var name, code;
+    db.collection("Sermon").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            const userdata = doc.data();
+            name = userdata.Sermon_Name;
+            code = userdata.Embeded_Code;
+            node1.innerHTML += "<div class='d-flex' style='height: 102px'><p class='Text'>" + name + "</p></div><div class='p-2'></div>";
+            node2.innerHTML += "<div class='d-flex'>" + code + "</div></div><div class='p-2'></div>";
+        });
+    });
+</script>

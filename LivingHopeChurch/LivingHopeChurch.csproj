@@ -184,6 +184,13 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Directory_Admin.aspx.cs">
+      <DependentUpon>Directory_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Directory_Admin.aspx.designer.cs">
+      <DependentUpon>Directory_Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +214,13 @@
     </Compile>
     <Compile Include="Home_Guest.aspx.designer.cs">
       <DependentUpon>Home_Guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ministry_Admin.aspx.cs">
+      <DependentUpon>Ministry_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ministry_Admin.aspx.designer.cs">
+      <DependentUpon>Ministry_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ministry_Guest.aspx.cs">
       <DependentUpon>Ministry_Guest.aspx</DependentUpon>
@@ -242,6 +256,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile_Admin.aspx.cs">
+      <DependentUpon>Profile_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile_Admin.aspx.designer.cs">
+      <DependentUpon>Profile_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
@@ -303,22 +324,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Bell.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Directory_Admin.aspx" />
     <Content Include="Encryption.js" />
+    <Content Include="Explorer%27s Club.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Directory.aspx" />
     <Content Include="Home_Admin.aspx" />
     <Content Include="Home_Guest.aspx" />
+    <Content Include="Kids for Christ.jpg" />
+    <Content Include="Life Group.jpg" />
+    <Content Include="Ministry_Admin.aspx" />
     <Content Include="Ministry_Guest.aspx" />
     <Content Include="Offering_Admin.aspx" />
     <Content Include="Offering_Guest.aspx" />
     <Content Include="Offering.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Profile_Admin.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Registration_Verify.aspx" />
     <Content Include="Sermon_Admin.aspx" />
@@ -351,6 +379,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Teens.jpg" />
+    <Content Include="Word.jpg" />
+    <Content Include="Worship.jpg" />
+    <Content Include="Young Adult.jpg" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

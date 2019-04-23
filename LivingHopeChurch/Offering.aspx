@@ -114,16 +114,43 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-        var type = localStorage.Type;
-        if (type != "Member") {
-            if (type == "")
-                location.replace("http://localhost:50455/Registration.aspx");
-            else if (type == "Admin")
-                location.replace("http://localhost:50455/Offering_Admin.aspx");
-            else if (type == "Guest")
-                location.replace("http://localhost:50455/Home_Guest.aspx");
-        }
-    </script>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyArcbqxkogFHes_uI7qcuaUKB05z4h1FMg",
+        authDomain: "living-hope-church.firebaseapp.com",
+        projectId: "living-hope-church"
+    });
+    var db = firebase.firestore();
+    var user = localStorage.User;
+    if (user == "") {
+        location.replace("http://localhost:50455/Login.aspx")
+    }
+    var docRef = db.collection("User").doc(user);
+    var type = localStorage.Type;
+    docRef.get().then(function (doc) {
+        if (doc.exists) {
+            const userdata = doc.data();
+            check = userdata.Encrypt;
+            if (type == "Member") {
+                if (check != localStorage.Key) {
+                    localStorage.User = "";
+                    localStorage.Type = "";
+                    localStorage.Key = "";
+                    location.replace("http://localhost:50455/Login.aspx")
+                }
+            }
+            else {
+                if (type == "")
+                    location.replace("http://localhost:50455/Registration.aspx");
+                else if (type == "Admin")
+                    location.replace("http://localhost:50455/Offering_Admin.aspx");
+                else if (type == "Guest")
+                    location.replace("http://localhost:50455/Offering_Guest.aspx");
+            }
+        }
+    });
+</script>

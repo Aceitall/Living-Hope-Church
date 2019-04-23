@@ -10,7 +10,7 @@
 namespace LivingHopeChurch {
     
     
-    public partial class Ministry_Guest {
+    public partial class Ministry_Admin {
         
         /// <summary>
         /// form1 control.

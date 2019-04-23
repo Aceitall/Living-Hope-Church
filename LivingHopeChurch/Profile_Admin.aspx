@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Directory.aspx.cs" Inherits="LivingHopeChurch.Directory" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile_Admin.aspx.cs" Inherits="LivingHopeChurch.Profile_Admin" %>
 
 <!DOCTYPE html>
 
@@ -8,7 +8,7 @@
 <head runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>Directory</title>
+    <title>Profile</title>
     <style>
         .sidenav {
             height: auto;
@@ -40,8 +40,16 @@
             font-size: large;
             font-family: Comfortaa;
             color: white;
-            display: block;
-            transition: 0.1s;
+        }
+
+        .Profile{
+            font-family: Comfortaa;
+            color: white;
+        }
+        .Title {
+            font-size: xx-large;
+            font-family: Comfortaa;
+            color: white;
         }
 
         a:hover {
@@ -61,30 +69,6 @@
                 .sidenav a {
                     font-size: 18px;
                 }
-
-            #loader {
-                position: fixed;
-                left: 43%;
-                top: 40%;
-            }
-        }
-
-        .Text {
-            font-size: 16px;
-            font-family: Comfortaa;
-            color: white;
-        }
-
-        .Headers {
-            font-size: x-large;
-            font-family: Comfortaa;
-            color: white;
-        }
-
-        .Title {
-            font-size: xx-large;
-            font-family: Comfortaa;
-            color: white;
         }
 
         body {
@@ -95,70 +79,52 @@
         function Click() {
             if (document.getElementById("SideBar").style.width == "120px") {
                 document.getElementById("SideBar").style.width = "0";
+                document.getElementById("Profile").style.paddingLeft = "50px";
             }
             else {
                 document.getElementById("SideBar").style.width = "120px";
+                document.getElementById("Profile").style.paddingLeft = "100px";
             }
         }
         function Logout() {
             localStorage.User = "";
             localStorage.Type = "";
+            localStorage.Key = "";
             location.replace("http://localhost:50455/Login.aspx");
         }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="width: 100%; height: 100%">
+        <div>
             <div id="SideBar" class="sidenav">
-                <a href="Ministry.aspx">Ministry</a>
-                <a href="Sermon.aspx">Sermons</a>
-                <a href="#">Directory</a>
-                <a href="Offering.aspx">Offering</a>
-                <a href="Profile.aspx">Profile</a>
+                <a href="Ministry_Admin.aspx">Ministry</a>
+                <a href="Sermon_Admin.aspx">Sermons</a>
+                <a href="Directory_Admin.aspx">Directory</a>
+                <a href="Offering_Admin.aspx">Offering</a>
+                <a href="#">Profile</a>
             </div>
             <div class="d-flex flex-row justify-content-start">
                 <div class="p" style="padding-left: 10px">
                     <span style="color: white; font-size: 30px; cursor: pointer" onclick="Click()">&#9776;</span>
                 </div>
                 <div class="p" style="padding: 11px 0px 0px 10px">
-                    <a href="Home.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
+                    <a href="Home_Admin.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
                 <div class="ml-auto p-2">
                     <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
                 </div>
                 <div class="p-1"></div>
             </div>
-            <div class="d-flex p-4 justify-content-center">
-                <div>
-                    <div id="Title">
-                        <p class="Title">Directory</p>
+            <div class="d-flex p-4 justify-content-center Title">Profile</div>
+            <div id="loader">
+                <div class="loader2">
+                    <div class="loader3">
                     </div>
                 </div>
             </div>
-            <div class="d-flex p-1 justify-content-center">
-                <div>
-                    <div id="Fname">
-                        <p class="Headers">First Name</p>
-                    </div>
-                </div>
-                <div class="p-4"></div>
-                <div>
-                    <div id="Lname">
-                        <p class="Headers">Last Name</p>
-                    </div>
-                </div>
-                <div class="p-4"></div>
-                <div>
-                    <div id="Number">
-                        <p class="Headers">Number</p>
-                    </div>
-                </div>
-                <div class="p-4"></div>
-                <div>
-                    <div id="Email">
-                        <p class="Headers">Email</p>
-                    </div>
+            <div class="d-flex" style="padding-left:50px">
+                <div id="Profile" class="Profile">
                 </div>
             </div>
         </div>
@@ -176,22 +142,22 @@
         authDomain: "living-hope-church.firebaseapp.com",
         projectId: "living-hope-church"
     });
-    var node1 = document.getElementById("Fname");
-    var node2 = document.getElementById("Lname");
-    var node3 = document.getElementById("Number");
-    var node4 = document.getElementById("Email");
     var db = firebase.firestore();
     var user = localStorage.User;
+    var fname, lname, number, email; 
+    var node = document.getElementById("Profile");
+    var type = localStorage.Type;
+    
     if (user == "") {
         location.replace("http://localhost:50455/Login.aspx")
     }
-    var docRef = db.collection("User").doc(user);
-    var type = localStorage.Type;
-    docRef.get().then(function (doc) {
+    
+    var docRef1 = db.collection("User").doc(user);
+    docRef1.get().then(function (doc) {
         if (doc.exists) {
             const userdata = doc.data();
             check = userdata.Encrypt;
-            if (type == "Member") {
+            if (type == "Admin") {
                 if (check != localStorage.Key) {
                     localStorage.User = "";
                     localStorage.Type = "";
@@ -202,25 +168,37 @@
             else {
                 if (type == "")
                     location.replace("http://localhost:50455/Registration.aspx");
-                else if (type == "Admin")
-                    location.replace("http://localhost:50455/Directory_Admin.aspx");
+                else if (type == "Member")
+                    location.replace("http://localhost:50455/Profile.aspx");
                 else if (type == "Guest")
                     location.replace("http://localhost:50455/Home_Guest.aspx");
             }
         }
     });
-    var fname, lname, number, email;
-    db.collection("User").get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
+
+    var docRef = db.collection("User").doc(user);
+    docRef.get().then(function (doc) {
+        if (doc.exists) {
             const userdata = doc.data();
             fname = userdata.First_Name;
             lname = userdata.Last_Name;
             number = userdata.Number;
             email = userdata.Email;
-            node1.innerHTML += "<div class='d-flex' style='height: 40px'><p class='Text'>" + fname + "</p></div>";
-            node2.innerHTML += "<div class='d-flex' style='height: 40px'><p class='Text'>" + lname + "</p></div>";
-            node3.innerHTML += "<div class='d-flex' style='height: 40px'><p class='Text'>" + number + "</p></div>";
-            node4.innerHTML += "<div class='d-flex' style='height: 40px'><p class='Text'>" + email + "</p></div>";
-        });
+            node.innerHTML = "<div style='font-size:x-large'>First name</div>";
+            node.innerHTML += "<div style='font-size:large'><span class='border border-info rounded' style='display:block; padding-left:10px; height:30px; width:300px'>" + fname + "</span></div>";
+            node.innerHTML += "<div class = 'd-flex p-2'></div>";
+            node.innerHTML += "<div style='font-size:x-large'>Last name</div>";
+            node.innerHTML += "<div style='font-size:large'><span class='border border-info rounded' style='display:block; padding-left:10px; height:30px; width:300px'>" + lname + "</span></div>";
+            node.innerHTML += "<div class = 'd-flex p-2'></div>";
+            node.innerHTML += "<div style='font-size:x-large'>Number</div>";
+            node.innerHTML += "<div style='font-size:large'><span class='border border-info rounded' style='display:block; padding-left:10px; height:30px; width:300px'>" + number + "</span></div>";
+            node.innerHTML += "<div class = 'd-flex p-2'></div>";
+            node.innerHTML += "<div style='font-size:x-large'>Email</div>";
+            node.innerHTML += "<div style='font-size:large'><span class='border border-info rounded' style='display:block; padding-left:10px; height:30px; width:300px'>" + email + "</span></div>";
+            node.innerHTML += "<div class = 'd-flex p-2'></div>";
+        }
+        else {
+
+        }
     });
 </script>

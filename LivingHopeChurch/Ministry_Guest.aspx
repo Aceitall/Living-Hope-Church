@@ -46,7 +46,23 @@
             display: block;
             transition: 0.1s;
         }
-
+        .Title {
+            font-size: xx-large;
+            font-family: Comfortaa;
+            color: white;
+        }
+        .Text{
+            font-size: large;
+            font-family: Comfortaa;
+            color: black;
+            text-align:justify;
+        }
+        .TextBig{
+            font-size: x-large;
+            font-family: Comfortaa;
+            color: black;
+            text-align:center;
+        }
         a:hover {
             color: lightgrey;
         }
@@ -93,6 +109,125 @@
                 <button type="button" onclick="SignUp()" class="btn btn-light">Sign up</button>
             </div>
             <div class="p-1"></div>
+        </div>
+        <div class="d-flex p-4 justify-content-center">
+            <div>
+                <div id="Title">
+                    <p class="Title">Ministries</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:limegreen;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image1" runat="server" Height="300px" ImageUrl="~/Life Group.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Life Groups</p>
+                    <p class="Text">We believe God created us to live in relationship with others - that’s why Life Groups exist. It's the perfect place to connect with others as you grow deeper in your relationship with God. Together, we learn, share life, and serve others.</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:cornflowerblue;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Kids for Christ</p>
+                    <p class="Text">Children between the ages of Three to Six are in the perfect place to learn and be taught the word of God. We use a lot of activities and memory verses to help the child learn about God and how He wants to have a relationship with us.</p>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image5" runat="server" Height="300px" ImageUrl="~/Kids for Christ.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:limegreen;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image2" runat="server" Height="300px" ImageUrl="~/Explorer's Club.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Explorer's Club</p>
+                    <p class="Text">Children between the ages of Seven to Twelve need to be taught in a specific way. We make sure that the material that is being taught is relevant and also easy for the children to pick up. We want to help your kid grow in spirit and in the word.</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:cornflowerblue;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Teens</p>
+                    <p class="Text">There are a lot of changes that happen when a person is between the ages of Thirteen to Seventeen. These changes both emotionally and physically need to be dealt with and addressed carefully so that the child can grow and does not stray down the wrong path.</p>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image6" runat="server" Height="300px" ImageUrl="~/Teens.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:limegreen;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image3" runat="server" Height="300px" ImageUrl="~/Young Adult.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Young Adults</p>
+                    <p class="Text">Young Adults are the age where they are out of college and currently working. They are also single and need help in building sound and solid relationships. We want to help to cater to this group by mentoring them and helping them understand that God has a plan for their lives.</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:cornflowerblue;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Word</p>
+                    <p class="Text">We have dedicated preachers and pastors from across different churches who come to help us learn the word of God on a Sunday morning. The sermons are based on the Bible and help us grow in our faith. We also record the sermons so that people can listen to them later at their own descretion.</p>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image7" runat="server" Height="300px" ImageUrl="~/Word.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="background-color:limegreen;margin:15px;border:2px solid white; border-radius: 5px; padding: 2px">
+            <div>
+                <div class="d-flex p-4">
+                    <div style="border: 2px solid white; border-radius: 5px;">
+                        <asp:Image class="Img" ID="Image4" runat="server" Height="300px" ImageUrl="~/Worship.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-3"></div>
+            <div style="padding-top:10px;">
+                <div class="p-5 justify-content-center">
+                    <p class="TextBig">Worship</p>
+                    <p class="Text">Worship is a key aspect of your walk with God. We want everyone who participates in our Church to be worshipping in Spirit and in truth. We have a group of dedicated musicians and leaders who lead us into the presence of God. Every Sunday is different and you can encounter God afresh each time.</p>
+                </div>
+            </div>
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

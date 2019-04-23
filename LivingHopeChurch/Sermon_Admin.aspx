@@ -156,12 +156,12 @@
                 }
             }
         }
-        function Upload() {
+        function Open() {
             document.getElementById("Upload").style.display = "block";
         }
         var myVar;
         function myFunction() {
-            myVar = setTimeout(showPage, 1000);
+            myVar = setTimeout(showPage, 5000);
         }
         function showPage() {
             document.getElementById("loader").style.display = "none";
@@ -169,6 +169,12 @@
         }
         function Close() {
             document.getElementById("Upload").style.display = "none";
+        }
+        function Logout() {
+            localStorage.User = "";
+            localStorage.Type = "";
+            localStorage.Key = "";
+            location.replace("http://localhost:50455/Login.aspx");
         }
     </script>
 </head>
@@ -189,7 +195,10 @@
                 <div class="p" style="padding: 11px 0px 0px 10px">
                     <a href="Home_Admin.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
-                <div class="p-2"></div>
+                <div class="ml-auto p-2">
+                    <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
+                </div>
+                <div class="p-1"></div>
             </div>
             <div class="d-flex p-4 justify-content-center">
                 <div>
@@ -197,7 +206,7 @@
                         <p class="Title">Sermons</p>
                     </div>
                     <div>
-                        <button type="button" onclick="Upload()" class="btn btn-success">Add new Sermon</button>
+                        <button type="button" onclick="Open()" class="btn btn-success">Add new Sermon</button>
                     </div>
                 </div>
             </div>
@@ -212,7 +221,7 @@
                         </div>
                         <div class="p-2"></div>
                         <div class="d-flex" style="height: 40px">
-                            <p class="Text">HTML code</p>
+                            <p class="Text">Embeded code</p>
                         </div>
                     </div>
                     <div class="p-5"></div>
@@ -225,6 +234,10 @@
                             <asp:TextBox class="Input_Size" ID="Link" runat="server" BackColor="#282B2D" BorderColor="White" BorderStyle="Ridge" Font-Names="Comfortaa" ForeColor="White"></asp:TextBox>
                         </div>
                     </div>
+                </div>
+                <div class="p-2"></div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" onclick="Upload()" class="btn btn-light">Upload</button>
                 </div>
                 <div class="p-1"></div>
                 <hr />
@@ -239,23 +252,9 @@
             <div id="Playlist" style="display: none">
                 <div class="d-flex justify-content-center">
                     <div id="Description">
-                        <div class="d-flex" style="height: 102px">
-                            <p class="Text">Andrew Huang - Stay</p>
-                        </div>
-                        <div class="p-2"></div>
-                        <div class="d-flex" style="height: 102px">
-                            <p class="Text">JVNA - Running</p>
-                        </div>
                     </div>
                     <div class="p-5"></div>
                     <div id="Audio">
-                        <div class="d-flex">
-                            <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/JVNA---Running-e3k16u/a-acj4hg" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
-                        </div>
-                        <div class="p-2"></div>
-                        <div class="d-flex">
-                            <iframe src="https://anchor.fm/aaron-pereira/embed/episodes/Andrew-Huang---Stay-e3k16o/a-acj4he" height="102px" width="320px" frameborder="0" scrolling="no"></iframe>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -264,7 +263,15 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
     <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyArcbqxkogFHes_uI7qcuaUKB05z4h1FMg",
+            authDomain: "living-hope-church.firebaseapp.com",
+            projectId: "living-hope-church"
+        });
+        var db = firebase.firestore();
         var type = localStorage.Type;
         if (false) {
             if (type == "")
@@ -273,6 +280,35 @@
                 location.replace("http://localhost:50455/Sermon.aspx");
             else if (type == "Guest")
                 location.replace("http://localhost:50455/Sermon_Guest.aspx");
+        }
+        var node1 = document.getElementById("Description");
+        var node2 = document.getElementById("Audio");
+        var name, code;
+        db.collection("Sermon").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                const userdata = doc.data();
+                name = userdata.Sermon_Name;
+                code = userdata.Embeded_Code;
+                node1.innerHTML += "<div class='d-flex' style='height: 102px'><p class='Text'>" + name + "</p></div><div class='p-2'></div>";
+                node2.innerHTML += "<div class='d-flex'>" + code + "</div></div><div class='p-2'></div>";
+            });
+        });
+        function Upload() {
+            var name = document.getElementById("Name").value;
+            var code = document.getElementById("Link").value;
+            if ((name === "") || code === "") {
+                alert("You cannot upload a sermon without providing proper details");
+            }
+            else {
+                db.collection("Sermon").doc().set({
+                    Sermon_Name: name,
+                    Embeded_Code: code
+                });
+                alert("Successfully uploaded");
+                document.getElementById("Name").value = "";
+                document.getElementById("Link").value = "";
+                location.reload(true);
+            }
         }
     </script>
 </body>

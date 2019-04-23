@@ -6,7 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Home</title>
     <style>
         .sidenav {
@@ -81,6 +83,15 @@
             localStorage.Key = "";
             location.replace("http://localhost:50455/Login.aspx");
         }
+        $('#Notification').ready(function () {
+            if (notif === "") {
+                $('[data-toggle="popover"]').popover();
+            }
+            else {
+                $('[data-toggle="popover"]').attr('data-content',"<div>This is a custom notification<p style='font-size:10px;text-align:right'><i>9:32 pm</i></p></div>");
+                $('[data-toggle="popover"]').popover();
+            }
+        });
     </script>
 </head>
 <body>
@@ -101,6 +112,9 @@
                     <a href="#" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
                 <div class="ml-auto p-2">
+                    <a href="#" id="Notification" data-title="<div style='text-align:center'><b>Notifications</b></div>" data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" data-content="You have no new notifications"><img src="Bell.png" height="40px"></a>
+                </div>
+                <div class="p-2">
                     <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
                 </div>
                 <div class="p-1"></div>
@@ -115,6 +129,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
 <script>
+    var notif = "a";
     firebase.initializeApp({
         apiKey: "AIzaSyArcbqxkogFHes_uI7qcuaUKB05z4h1FMg",
         authDomain: "living-hope-church.firebaseapp.com",

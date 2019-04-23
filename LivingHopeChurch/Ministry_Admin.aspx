@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ministry.aspx.cs" Inherits="LivingHopeChurch.Ministry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ministry_Admin.aspx.cs" Inherits="LivingHopeChurch.Ministry_Admin" %>
 
 <!DOCTYPE html>
 
@@ -101,6 +101,7 @@
         function Logout() {
             localStorage.User = "";
             localStorage.Type = "";
+            localStorage.Key = "";
             location.replace("http://localhost:50455/Login.aspx");
         }
     </script>
@@ -110,17 +111,17 @@
         <div style="width: 100%; height: 100%">
             <div id="SideBar" class="sidenav">
                 <a href="#">Ministry</a>
-                <a href="Sermon.aspx">Sermons</a>
-                <a href="Directory.aspx">Directory</a>
-                <a href="Offering.aspx">Offering</a>
-                <a href="Profile.aspx">Profile</a>
+                <a href="Sermon_Admin.aspx">Sermons</a>
+                <a href="Directory_Admin.aspx">Directory</a>
+                <a href="Offering_Admin.aspx">Offering</a>
+                <a href="Profile_Admin.aspx">Profile</a>
             </div>
             <div class="d-flex flex-row justify-content-start">
                 <div class="p" style="padding-left: 10px">
                     <span style="color: white; font-size: 30px; cursor: pointer" onclick="Click()">&#9776;</span>
                 </div>
                 <div class="p" style="padding: 11px 0px 0px 10px">
-                    <a href="Home.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
+                    <a href="Home_Admin.aspx" class="Home" style="text-decoration: none">Living Hope Church</a>
                 </div>
                 <div class="ml-auto p-2">
                     <button type="button" onclick="Logout()" class="btn btn-light">Logout</button>
@@ -293,4 +294,3 @@
         }
     });
 </script>
-
